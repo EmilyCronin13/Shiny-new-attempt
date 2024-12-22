@@ -76,4 +76,35 @@ padding: 50px;}
   )
   ),
   
+  # Data Exploration Tab
+  tabPanel(
+    "Data Exploration: Visualisation of DIG Trial outcomes",
+    fluidPage(
+      div(
+        class = "visualization-info",
+        h3("Visual Data Exploration: Results of DIG Trial"),
+        p("This section displays various visualizations based on the Digitalis Investigation Group (DIG) trial data. You can explore the relationship between different clinical variables, treatment groups, and patient characteristics through scatter plots, mosaic plots, and bar charts. Use the controls to filter data by age, gender, and other factors.")
+      ),
+      sidebarLayout(
+        sidebarPanel(
+          sliderInput("age_range", "Age Range", min = 30, max = 100, value = c(30, 100)),
+          selectizeInput("gender", "Gender", choices = c("All", "Male", "Female"), selected = "All"),
+          selectizeInput("variable", "Variable",
+                         choices = c("BMI", "KLEVEL", "CREAT", "DIABP", "SYSBP", "HOSPDAYS"), selected = "BMI"),
+          downloadButton("download_data", "Download Filtered Data"),
+          tags$img(src = "https://www.digitalis-cdc.com/digitalisshowcase/ui/img/digitalis-flat-1200x800.png",
+                   style = "width: 100%; height: auto; margin-top: 20px;")
+        ),
+        mainPanel(
+          tabsetPanel(
+            tabPanel("Interactive Scatter Plot", plotlyOutput("scatter_plot")),
+            tabPanel("Mosaic Plot", plotlyOutput("mosaic_plot")),
+            tabPanel(
+              "Static Bar Charts",
+              fluidRow(
+                column(6, plotlyOutput("mortality_plot")),
+                column(6, plotlyOutput("cvd_mortality_plot"))
+              )
+            ),
+            
                                                       
