@@ -106,5 +106,35 @@ padding: 50px;}
                 column(6, plotlyOutput("cvd_mortality_plot"))
               )
             ),
-            
+            tabPanel(
+              "Static Survival Plot",
+              fluidPage(
+                div(
+                  class = "static-survival-plot",
+                  h3("Static Survival Plot"),
+                  p("This plot shows the risk of mortality over time by treatment group and the presence or absence of cardiovascular disease (CVD). It helps to visualize how CVD affects the mortality risk in patients under different treatments."),
+                  img(src = "survival.png", style = "width: 100%; height: auto; margin-top: 20px;")  
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  ),
+  
+  # Summary Page
+  tabPanel(
+    "Summary",
+    fluidPage(
+      tags$head(
+        tags$style(HTML("
+          .summary-table-section {
+            background-color: #2C3E50;
+            padding: 20px;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+          }
+           
                                                       
